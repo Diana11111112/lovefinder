@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>LoveFinder 2026</title>
+<style>
+  body { font-family: Arial; background: #fff0f5; text-align: center; padding: 50px; }
+  .container { background: #fff; padding: 30px; width: 420px; margin: auto; border-radius: 15px; border: 2px solid #d19ce3; }
+  button { padding: 10px 20px; margin-top: 15px; background: #a64ca6; color: white; border: none; border-radius: 5px; cursor: pointer; }
+  input { padding: 10px; width: 80%; margin-top: 10px; }
+  .certificate { border: 2px dashed #a64ca6; margin-top: 20px; padding: 15px; background: #fce4f1; }
+</style>
+</head>
+<body>
+
+<div class="container" id="content">
+  <h1>🎉 Вітаємо!</h1>
+  <p>Введіть ваше ім’я для підтвердження участі:</p>
+  <input id="nameInput" placeholder="Ваше ім’я">
+  <br>
+  <button onclick="start()">Підтвердити</button>
+</div>
+
+<script>
+let userName = "";
+
+function start() {
+  userName = document.getElementById("nameInput").value;
+  if (!userName) {
+    alert("Введіть ім’я!");
+    return;
+  }
+
+  document.getElementById("content").innerHTML = `
+    <h1>🎉 Вітаємо, ${userName}!</h1>
+    <p>Ви зареєстровані на курс LoveFinder 2026</p>
+    <button onclick="nextStep()">Продовжити</button>
+  `;
+}
+
+function nextStep() {
+  document.getElementById("content").innerHTML = `
+    <h1>🔍 Аналіз даних...</h1>
+    <p>Обробка інформації...</p>
+  `;
+
+  setTimeout(() => {
+    document.getElementById("content").innerHTML = `
+      <h1>❤️ Результат готовий!</h1>
+      <p>Чи готові ви піти на побачення?</p>
+      <button onclick="finalStep('Так')">Так</button>
+      <button onclick="finalStep('Ні')">Ні</button>
+    `;
+  }, 2000);
+}
+
+function finalStep(choice) {
+  document.getElementById("content").innerHTML = `
+    <h1>❗ ЗБІЙ СИСТЕМИ</h1>
+    <p>${userName}, ви обрали: ${choice}</p>
+    <p>Ідеальна пара поки що не визначена 😄</p>
+
+    <div class="certificate">
+      <h2>🏆 Сертифікат</h2>
+      <p>Видано: <strong>${userName}</strong></p>
+      <p>Учасник LoveFinder 2026</p>
+    </div>
+
+    <button onclick="location.reload()">Спробувати ще</button>
+  `;
+}
+</script>
+
+</body>
+</html> 
